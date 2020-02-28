@@ -107,8 +107,8 @@
 #define HEATER_BED_PIN    144 // 4
 
 #define CONTROLLER_FAN_PIN 147
-//#define E0_AUTO_FAN_PIN 148 // need to update Configuration_adv.h @section extruder 
-//#define E1_AUTO_FAN_PIN 149 // need to update Configuration_adv.h @section extruder 
+//#define E0_AUTO_FAN_PIN 148 // need to update Configuration_adv.h @section extruder
+//#define E1_AUTO_FAN_PIN 149 // need to update Configuration_adv.h @section extruder
 #define FAN1_PIN 149
 
 //
@@ -118,6 +118,7 @@
 #define MISO_PIN           19
 #define SCK_PIN            18
 #define SDSS                5
+#define USES_SHARED_SPI  // SPI is shared by SD card with TMC SPI drivers
 
 //////////////////////////
 // LCDs and Controllers //
@@ -135,10 +136,10 @@
 
   #elif ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
 
-    #define BEEPER_PIN      152
+    #define BEEPER_PIN      151
 
     //#define LCD_PINS_D5     150
-    //#define LCD_PINS_D6     151
+    //#define LCD_PINS_D6     152
     //#define LCD_PINS_D7     153
 
   #else
@@ -152,3 +153,13 @@
   #define BTN_ENC            14
 
 #endif // HAS_GRAPHICAL_LCD
+
+// Hardware serial pins
+// Add the following to Configuration.h or Configuration_adv.h to assign
+// specific pins to hardware Serial1 and Serial2.
+// Note: Serial2 can be defined using HARDWARE_SERIAL2_RX and HARDWARE_SERIAL2_TX but
+// MRR ESPA does not have enough spare pins for such reassignment.
+//#define HARDWARE_SERIAL1_RX 21
+//#define HARDWARE_SERIAL1_TX 22
+//#define HARDWARE_SERIAL2_RX  2
+//#define HARDWARE_SERIAL2_TX  4

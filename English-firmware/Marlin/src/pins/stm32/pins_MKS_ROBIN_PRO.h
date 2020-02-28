@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -251,7 +251,7 @@
     #define DOGLCD_SCK     PB13
     #define DOGLCD_MOSI    PB15
 
-  #else // !MKS_MINI_12864
+  #else // !MKS_MINI_12864 && !ENDER2_STOCKDISPLAY
 
     #define LCD_PINS_D4    PF14
     #if ENABLED(ULTIPANEL)
@@ -260,7 +260,7 @@
       #define LCD_PINS_D7  PF13
     #endif
 
-  #endif // !MKS_MINI_12864
+  #endif // !MKS_MINI_12864 && !ENDER2_STOCKDISPLAY
 #endif
 
 #ifndef ST7920_DELAY_1

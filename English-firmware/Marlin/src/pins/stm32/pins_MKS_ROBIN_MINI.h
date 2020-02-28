@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -40,9 +40,9 @@
 
 #define FLASH_EEPROM_EMULATION
 // 2K in a AT24C16N
-#define EEPROM_PAGE_SIZE	(uint16)0x800 // 2048
-#define EEPROM_START_ADDRESS	((uint32)(0x8000000 + 512 * 1024 - 2 * EEPROM_PAGE_SIZE))
-#define E2END (EEPROM_PAGE_SIZE - 1) 
+#define EEPROM_PAGE_SIZE      (uint16)0x800 // 2048
+#define EEPROM_START_ADDRESS  ((uint32)(0x8000000 + 512 * 1024 - 2 * EEPROM_PAGE_SIZE))
+#define E2END (EEPROM_PAGE_SIZE - 1)
 
 //
 // Note: MKS Robin mini board is using SPI2 interface.

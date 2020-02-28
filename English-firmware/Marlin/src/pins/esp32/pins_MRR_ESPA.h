@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -99,3 +99,12 @@
 #define MISO_PIN           19
 #define SCK_PIN            18
 #define SDSS                5
+#define USES_SHARED_SPI  // SPI is shared by SD card with TMC SPI drivers
+
+// Hardware serial pins
+// Add the following to Configuration.h or Configuration_adv.h to assign
+// specific pins to hardware Serial1.
+// Note: Serial2 can be defined using HARDWARE_SERIAL2_RX and HARDWARE_SERIAL2_TX but
+// MRR ESPA does not have enough spare pins for such reassignment.
+//#define HARDWARE_SERIAL1_RX 21
+//#define HARDWARE_SERIAL1_TX 22

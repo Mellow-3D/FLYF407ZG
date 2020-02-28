@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -27,6 +27,10 @@
 #include "../gcode.h"
 #include "../../module/temperature.h"
 
+#if ENABLED(EXTENSIBLE_UI)
+  #include "../../lcd/extensible_ui/ui_api.h"
+#endif
+
 /**
  * M303: PID relay autotune
  *
@@ -49,6 +53,9 @@ void GcodeSuite::M303() {
   const heater_ind_t e = (heater_ind_t)parser.intval('E');
   if (!WITHIN(e, SI, EI)) {
     SERIAL_ECHOLNPGM(MSG_PID_BAD_EXTRUDER_NUM);
+    #if ENABLED(EXTENSIBLE_UI)
+      ExtUI::OnPidTuning(ExtUI::result_t::PID_BAD_EXTRUDER_NUM);
+    #endif
     return;
   }
 

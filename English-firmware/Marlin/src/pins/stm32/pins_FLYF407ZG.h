@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -153,6 +153,40 @@
 #define FAN5_PIN           PB11
 
 //
+// Onboard SD support
+//
+
+#define SDIO_D0_PIN        PC8
+#define SDIO_D1_PIN        PC9
+//#define SD_CARD_DETECT_PIN PC13
+#define SDIO_D2_PIN        PC10
+#define SDIO_D3_PIN        PC11
+#define SDIO_CK_PIN        PC12
+#define SDIO_CMD_PIN       PD2
+
+#if !defined(SDCARD_CONNECTION) || SDCARD_CONNECTION == ONBOARD
+  #define SDIO_SUPPORT     // Use SDIO for onboard SD
+
+  #ifndef SDIO_SUPPORT
+    #define SOFTWARE_SPI   // Use soft SPI for onboard SD
+    #define SDSS           SDIO_D3_PIN
+    #define SCK_PIN        SDIO_CK_PIN
+    #define MISO_PIN       SDIO_D0_PIN
+    #define MOSI_PIN       SDIO_CMD_PIN
+  #endif
+ #else
+ 
+#define SCK_PIN            PB13
+#define MISO_PIN           PB14
+#define MOSI_PIN           PB15
+#define SDSS               PF11
+#define SD_DETECT_PIN      PB2
+    
+  
+  
+#endif
+
+//
 // Trinamic Software SPI
 //
 
@@ -207,33 +241,6 @@
 // LCD / Controller
 //
 
-#if ENABLED(FYSETC_MINI_12864)
-#define DOGLCD_CS PE14
-#define DOGLCD_A0 PE12
-//#define LCD_BACKLIGHT_PIN -1
-#define LCD_RESET_PIN PE10 // Must be high or open for LCD to operate normally.
-#if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
-#ifndef RGB_LED_R_PIN
-#define RGB_LED_R_PIN PE9
-#endif
-#ifndef RGB_LED_G_PIN
-#define RGB_LED_G_PIN PE8
-#endif
-#ifndef RGB_LED_B_PIN
-#define RGB_LED_B_PIN PE7
-#endif
-#elif ENABLED(FYSETC_MINI_12864_2_1)
-#define NEOPIXEL_PIN PE9
-#endif
-
-
-#else
-
-#define SCK_PIN            PB13
-#define MISO_PIN           PB14
-#define MOSI_PIN           PB15
-#define SDSS               PF11
-#define SD_DETECT_PIN      PB2
 #define BEEPER_PIN         PB10
 #define LCD_PINS_RS        PE12
 #define LCD_PINS_ENABLE    PE14
@@ -244,15 +251,6 @@
 #define BTN_EN1            PC4
 #define BTN_EN2            PC5
 #define BTN_ENC            PE15
-
-
-
-#endif 
-
-
-
-
-
 
 //
 // Filament runout
