@@ -36,8 +36,9 @@
 //
 // Servos
 //
-#define SERVO0_PIN                          PE11
 
+#define SERVO0_PIN                          PE11
+//#define SERVO0_PIN                          PA3
 //
 // Limit Switches
 //
@@ -179,6 +180,17 @@
   #endif
 #endif
 
+#if SD_CONNECTION_IS(LCD)
+#define SCK_PIN                             PB13
+#define MISO_PIN                            PB14
+#define MOSI_PIN                            PB15
+#define SDSS                                PF11
+#define SD_DETECT_PIN                       PB2
+
+#endif
+
+
+
 //
 // Trinamic Software SPI
 //
@@ -232,11 +244,7 @@
 //
 // LCD / Controller
 //
-#define SCK_PIN                             PB13
-#define MISO_PIN                            PB14
-#define MOSI_PIN                            PB15
-#define SDSS                                PF11
-#define SD_DETECT_PIN                       PB2
+
 #define BEEPER_PIN                          PB10
 #define LCD_PINS_RS                         PE12
 #define LCD_PINS_ENABLE                     PE14
@@ -252,7 +260,7 @@
 // Filament runout
 //
 
-#define FIL_RUNOUT_PIN                      PA3
+//#define FIL_RUNOUT_PIN                      PA3
 
 //
 // ST7920 Delays
@@ -266,3 +274,4 @@
 #ifndef BOARD_ST7920_DELAY_3
   #define BOARD_ST7920_DELAY_3     DELAY_NS(715)
 #endif
+
