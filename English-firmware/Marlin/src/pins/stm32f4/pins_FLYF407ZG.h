@@ -260,7 +260,7 @@
 // Filament runout
 //
 
-//#define FIL_RUNOUT_PIN                      PA3
+#define FIL_RUNOUT_PIN                      PA3
 
 //
 // ST7920 Delays
