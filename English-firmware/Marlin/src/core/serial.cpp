@@ -16,19 +16,19 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
 #include "serial.h"
-#include "language.h"
+#include "../inc/MarlinConfig.h"
 
 uint8_t marlin_debug_flags = MARLIN_DEBUG_NONE;
 
-static const char errormagic[] PROGMEM = "Error:";
-static const char echomagic[]  PROGMEM = "echo:";
+static PGMSTR(errormagic, "Error:");
+static PGMSTR(echomagic, "echo:");
 
-#if NUM_SERIAL > 1
+#if HAS_MULTI_SERIAL
   int8_t serial_port_index = 0;
 #endif
 
@@ -42,8 +42,8 @@ void serial_echopair_PGM(PGM_P const s_P, const char *v)   { serialprintPGM(s_P)
 void serial_echopair_PGM(PGM_P const s_P, char v)          { serialprintPGM(s_P); SERIAL_CHAR(v); }
 void serial_echopair_PGM(PGM_P const s_P, int v)           { serialprintPGM(s_P); SERIAL_ECHO(v); }
 void serial_echopair_PGM(PGM_P const s_P, long v)          { serialprintPGM(s_P); SERIAL_ECHO(v); }
-void serial_echopair_PGM(PGM_P const s_P, float v)         { serialprintPGM(s_P); SERIAL_ECHO(v); }
-void serial_echopair_PGM(PGM_P const s_P, double v)        { serialprintPGM(s_P); SERIAL_ECHO(v); }
+void serial_echopair_PGM(PGM_P const s_P, float v)         { serialprintPGM(s_P); SERIAL_DECIMAL(v); }
+void serial_echopair_PGM(PGM_P const s_P, double v)        { serialprintPGM(s_P); SERIAL_DECIMAL(v); }
 void serial_echopair_PGM(PGM_P const s_P, unsigned int v)  { serialprintPGM(s_P); SERIAL_ECHO(v); }
 void serial_echopair_PGM(PGM_P const s_P, unsigned long v) { serialprintPGM(s_P); SERIAL_ECHO(v); }
 
@@ -54,7 +54,7 @@ void serial_ternary(const bool onoff, PGM_P const pre, PGM_P const on, PGM_P con
   serialprintPGM(onoff ? on : off);
   if (post) serialprintPGM(post);
 }
-void serialprint_onoff(const bool onoff) { serialprintPGM(onoff ? PSTR(MSG_ON) : PSTR(MSG_OFF)); }
+void serialprint_onoff(const bool onoff) { serialprintPGM(onoff ? PSTR(STR_ON) : PSTR(STR_OFF)); }
 void serialprintln_onoff(const bool onoff) { serialprint_onoff(onoff); SERIAL_EOL(); }
 void serialprint_truefalse(const bool tf) { serialprintPGM(tf ? PSTR("true") : PSTR("false")); }
 
