@@ -6,6 +6,12 @@ Come to consult me
 ## What firmware does FLYF407 already support?
 Reprapfirmware,Marlin2.0,Klipper
 
+# How to configure and use this motherboard in Reprap?
+
+1.You can check the manual in this github, reprapfirmware folder
+
+2.You can visithttps://github.com/gloomyandy/RepRapFirmware/wiki/Fly-407ZG-Wifi
+
 # How to configure and use this motherboard in Marlin?
 1.modify platformio.ini file
 
